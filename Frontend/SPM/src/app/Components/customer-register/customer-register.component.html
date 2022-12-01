@@ -1,0 +1,40 @@
+<div class="container my-5">
+    <h1 class="mb-3">Sign Up</h1>
+    <form #form="ngForm" (ngSubmit)="addCustomer()" novalidate>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name"
+          name="name" [(ngModel)]="addCustomerRequest.userName" required #userName="ngModel" [minlength]="2">
+          <div *ngIf="!userName?.valid && (userName?.dirty || userName?.touched)" class="error"> Minimum length should be two </div>
+          
+        </div>
+        <div class="mb-3">
+            <label for="mobile" class="form-label">Phone Number</label>
+            <input type="number" class="form-control" id="mobile"
+            name="mobile" [(ngModel)]="addCustomerRequest.mobile" required #mobile="ngModel" [maxLength]="10">
+            <div *ngIf="!mobile?.valid && (mobile?.dirty || mobile?.touched)" class="error"> Please enter a a valid number </div>
+            
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email"
+            name="email" required email #email="ngModel" [(ngModel)]="addCustomerRequest.email">
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error"> Invalid email </div>
+            
+            
+              
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password"
+            name="password" #password="ngModel" required minlength="8" [(ngModel)]="addCustomerRequest.password">
+            <div class="error" *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+              Invalid password
+           </div>
+            
+          </div>
+       
+        <button type="submit" [disabled]="!form" class="btn btn-primary">Sign Up</button>
+      </form>
+</div>
